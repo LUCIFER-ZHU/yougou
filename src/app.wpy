@@ -1,0 +1,72 @@
+<style lang="less"></style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/tabs/home',
+      'pages/tabs/cates',
+      'pages/tabs/search',
+      'pages/tabs/cart',
+      'pages/tabs/me'
+    ],
+    window: {
+      backgroundTextStyle: 'dark',
+      navigationBarBackgroundColor: '#d81e06',
+      navigationBarTitleText: '优购商城',
+      navigationBarTextStyle: 'white'
+    },
+    tabBar: {
+      selectedColor: '#D81E06',
+      list: [
+        {
+          pagePath: 'pages/tabs/home',
+          text: '首页',
+          iconPath: '/assets/icons/home.png',
+          selectedIconPath: '/assets/icons/home-active.png'
+        },
+        {
+          pagePath: 'pages/tabs/cates',
+          text: '分类',
+          iconPath: '/assets/icons/cates.png',
+          selectedIconPath: '/assets/icons/cates-active.png'
+        },
+        {
+          pagePath: 'pages/tabs/search',
+          text: '搜索',
+          iconPath: '/assets/icons/search.png',
+          selectedIconPath: '/assets/icons/search-active.png'
+        },
+        {
+          pagePath: 'pages/tabs/cart',
+          text: '购物车',
+          iconPath: '/assets/icons/cart.png',
+          selectedIconPath: '/assets/icons/cart-active.png'
+        },
+        {
+          pagePath: 'pages/tabs/me',
+          text: '我的',
+          iconPath: '/assets/icons/my.png',
+          selectedIconPath: '/assets/icons/my-active.png'
+        }
+      ]
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor() {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+    console.log('小程序启动了')
+  }
+}
+</script>
