@@ -6,7 +6,7 @@
       indicator-dots
     >
       <swiper-item
-        wx:for="{{swpierList}}"
+        wx:for="{{swiperList}}"
         wx:key="index"
       >
         <navigator
@@ -33,7 +33,6 @@
         >
           <image src="{{item.image_src}}" />
         </navigator>
-
         <image
           src="{{item.image_src}}"
           wx:else

@@ -11,7 +11,7 @@ export default class extends wepy.mixin {
     floorData: []
   }
 
-  onload() {
+  onLoad() {
     this.getSwiperData()
     // 分类数据
     this.getCateItems()
@@ -33,7 +33,7 @@ export default class extends wepy.mixin {
     const { data: res } = await wepy.get('/home/swiperdata')
 
     console.log(res)
-    if (res.mata.status !== 200) {
+    if (res.meta.status !== 200) {
       // console.log('获取数据失败')
       return wepy.baseToast()
     }
