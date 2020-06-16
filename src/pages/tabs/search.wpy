@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import wepy from 'wepy'
+  import wepy from 'wepy'
 
-export default class extends wepy.page {}
+  export default class extends wepy.page { }
 </script>
 
 <style lang="less"></style>

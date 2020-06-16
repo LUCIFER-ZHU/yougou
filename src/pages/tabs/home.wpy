@@ -1,11 +1,123 @@
 <template>
-  <view>Home页面</view>
+  <view>
+    <!-- 轮播图 -->
+    <swiper
+      circular
+      indicator-dots
+    >
+      <swiper-item
+        wx:for="{{swpierList}}"
+        wx:key="index"
+      >
+        <navigator
+          url="{{item.navigator_url}}"
+          open-type="{{item.open_type}}"
+          hover-class="none"
+        >
+          <image src="{{item.image_src}}" />
+        </navigator>
+      </swiper-item>
+    </swiper>
+
+    <!-- 分类区域 -->
+    <view class="cates">
+      <block
+        wx:for="{{cateItems}}"
+        wx:key="index"
+      >
+        <navigator
+          url="/pages/tabs/cates"
+          open-type="{{item.open_type}}"
+          wx:if="{{item.navigator_url !== undefined}}"
+          hover-class="none"
+        >
+          <image src="{{item.image_src}}" />
+        </navigator>
+
+        <image
+          src="{{item.image_src}}"
+          wx:else
+        />
+      </block>
+    </view>
+
+    <!-- 楼层区域 -->
+    <view class="floor-container">
+      <view
+        class="floor-item"
+        wx:for="{{floorData}}"
+        wx:key="index"
+      >
+        <!-- 标题 -->
+        <image
+          class="floor-item-title"
+          src="{{item.floor_title.image_src}}"
+        />
+        <!-- 图片 -->
+        <view class="floor-img-box">
+          <image
+            class="floor-item-pic"
+            wx:for="{{item.product_list}}"
+            wx:key="index"
+            src="{{item.image_src}}"
+            style="width: {{item.image_width}}rpx;"
+            @tap="goGoodsList({{item.navigator_url}})"
+          />
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
 
 <script>
-import wepy from 'wepy'
-
-export default class extends wepy.page {}
+  import wepy from 'wepy'
+  // 1. 导入外界的 mixin 文件，并接受
+  // @ 就代表 src 这一层路径
+  import mix from '@/mixins/tabs/home.js'
+  export default class extends wepy.page {
+    // 2. 把导入的 mix 对象，挂载到 mixins 这个数据中就行
+    mixins = [mix]
+  }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+  swiper {
+    height: 350rpx;
+    navigator,
+    image {
+      height: 100%;
+      width: 750rpx;
+    }
+  }
+
+  .cates {
+    display: flex;
+    justify-content: space-around;
+    margin: 40rpx 0;
+    image {
+      width: 128rpx;
+      height: 140rpx;
+    }
+  }
+
+  .floor-container {
+    .floor-item {
+      .floor-item-title {
+        height: 50rpx;
+        width: 640rpx;
+        display: block;
+      }
+      .floor-img-box {
+        .floor-item-pic {
+          float: left;
+          height: 190rpx;
+          margin: 8rpx;
+          margin-top: 0;
+          &:nth-child(1) {
+            height: 390rpx;
+          }
+        }
+      }
+    }
+  }
+</style>
