@@ -13,7 +13,7 @@ wepy.baseToast = function (str = '获取数据失败！') {
   })
 }
 
-const baseURL = 'https://www.zhengzhicheng.cn/api/public/v1'
+const baseURL = 'https://www.uinav.com/api/public/v1'
 /**
  * 发起 get 请求的 API
  * @url 请求的地址，为相对路径，必须以 / 开头

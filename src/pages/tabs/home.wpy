@@ -6,7 +6,7 @@
       indicator-dots
     >
       <swiper-item
-        wx:for="{{swpierList}}"
+        wx:for="{{swiperList}}"
         wx:key="index"
       >
         <navigator
