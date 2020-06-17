@@ -7,7 +7,7 @@
 
   export default class extends wepy.page {
     onLoad (options) {
-      console.log(options);
+      console.log(options)
     }
   }
 </script>

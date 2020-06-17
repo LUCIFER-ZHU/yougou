@@ -33,7 +33,7 @@
 	"miniprogramRoot": "dist/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"libVersion": "2.0.4",
+	"libVersion": "2.10.4",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -62,6 +62,13 @@
 					"id": -1,
 					"name": "分类页面",
 					"pathName": "pages/tabs/cates",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索功能",
+					"pathName": "pages/tabs/search",
 					"scene": null
 				}
 			]
