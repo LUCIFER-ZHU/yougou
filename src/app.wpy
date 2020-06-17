@@ -75,7 +75,9 @@
         // 图标组件
         'van-icon': './assets/vant/icon/index',
         // tag标签
-        'van-tag': './assets/vant/tag/index'
+        'van-tag': './assets/vant/tag/index',
+        // 卡片组件
+        'van-card': './assets/vant/card/index'
       }
     }
 

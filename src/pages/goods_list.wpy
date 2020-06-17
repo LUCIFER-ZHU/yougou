@@ -1,15 +1,50 @@
 <template>
-  <view>goods_list页面</view>
+  <view>
+    <!-- 商品列表区域 -->
+    <block wx:for="{{goodslist}}"
+           wx:key="index">
+      <van-card num="{{item.goods_number}}"
+                price="{{item.goods_price}}"
+                title="{{item.goods_name}}"
+                thumb="{{ item.goods_big_logo }}"
+                @tap="goGoodsDetail({{item.goods_id}})" />
+      <!-- 分割线 -->
+      <view class="down-line"></view>
+    </block>
+    <!-- 数据加载完毕提示 -->
+    <view class="over"
+          hidden="{{!isover}}">——数据已经到底，求放过——
+    </view>
+  </view>
 </template>
 
 <script>
   import wepy from 'wepy'
-
+  import mix from '@/mixins/tabs/goods_list.js'
   export default class extends wepy.page {
-    onLoad (options) {
-      console.log(options)
+    // config不能抽取到mixin里面去
+    config = {
+      navigationBarTitleText: '商品列表',
+      // 上拉触底的距离，默认是 50px
+      onReachBottomDistance: 100,
+      // 开启下拉刷新
+      enablePullDownRefresh: true,
+      // 设置下拉刷新窗口的背景色
+      backgroundColor: '#eee'
     }
+    mixins = [mix]
   }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+  .down-line {
+    border-top: 1rpx solid skyblue;
+  }
+  .over {
+    font-size: 24rpx;
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #ddd;
+  }
+</style>
