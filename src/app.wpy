@@ -66,7 +66,16 @@
         'van-badge-group': './assets/vant/badge-group/index',
         // 布局组件
         'van-row': './assets/vant/row/index',
-        'van-col': './assets/vant/col/index'
+        'van-col': './assets/vant/col/index',
+        // 搜索框组件
+        'van-search': './assets/vant/search/index',
+        // 单元格组件
+        'van-cell': './assets/vant/cell/index',
+        'van-cell-group': './assets/vant/cell-group/index',
+        // 图标组件
+        'van-icon': './assets/vant/icon/index',
+        // tag标签
+        'van-tag': './assets/vant/tag/index'
       }
     }
 
