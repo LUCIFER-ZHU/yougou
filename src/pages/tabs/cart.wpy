@@ -1,5 +1,14 @@
 <template>
-  <view>Cart页面</view>
+  <view>
+    <view>
+      <!-- 空白的购物车 -->
+      <view class="empty_cart">
+        <image src="/assets/images/cart_empty@2x.png" />
+        <view>哎呦，购物车是空的噢~</view>
+      </view>
+      <!-- 非空的购物车 -->
+    </view>
+  </view>
 </template>
 
 <script>
@@ -8,4 +17,15 @@
   export default class extends wepy.page { }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+  .empty_cart {
+    font-size: 26rpx;
+    color: #666;
+    text-align: center;
+    padding-top: 200rpx;
+    image {
+      width: 180rpx;
+      height: 180rpx;
+    }
+  }
+</style>

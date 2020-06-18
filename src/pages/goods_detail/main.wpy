@@ -84,7 +84,8 @@
                              url="/pages/tabs/cart"
                              link-type="switchTab" />
       <van-goods-action-button text="加入购物车"
-                               type="warning" />
+                               type="warning"
+                               @click="addToCart" />
       <van-goods-action-button text="立即购买" />
     </van-goods-action>
   </view>

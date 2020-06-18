@@ -28,7 +28,6 @@ export default class extends wepy.mixin {
         current: current
       })
     },
-
     // 获取用户的收货地址
     async chooseAddress() {
       const res = await wepy.chooseAddress().catch((err) => err)
@@ -41,6 +40,21 @@ export default class extends wepy.mixin {
       // 将选择的收获地址，存储到本地 Storage 中
       wepy.setStorageSync('address', res)
       this.$apply()
+    },
+    // 点击按钮，把商品添加到购物车列表中
+    addToCart() {
+      // 获取到当前商品的所有信息
+      // console.log(this.goodsInfo)
+      // 获取到当前商品的所有信息
+      // console.log(this.goodsInfo)
+      // console.log(this.$parent)
+      this.$parent.addGoodsToCart(this.goodsInfo)
+      console.log(this.$parent.globalData)
+      // 提示用户加入购物车成功
+      wepy.showToast({
+        title: '已加入购物车',
+        icon: 'success'
+      })
     }
   }
 

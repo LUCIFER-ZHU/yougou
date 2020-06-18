@@ -88,8 +88,46 @@
       }
     }
 
+    // 专门存储全局共享的数据
+    // 只需要通过 this.$parent.globalData 就可以拿到这个全局共享的数据对象
     globalData = {
-      userInfo: null
+      // 全局的购物车列表
+      cart: []
+    }
+
+    // 把商品，添加到购物车列表中
+    addGoodsToCart (goods) {
+      // 先根据 Id 查找购物车列表中，是否已经存储了对应的商品信息
+      // 如果查找的结果，值为 -1，证明要添加的商品不存在于购物车中，可以直接 push
+      // 如果查找的结果，值不为 -1，证明要添加的商品，已存在以购物车中，此时直接更新数量即可！！！
+      const i = this.globalData.cart.findIndex(x => x.id === goods.goods_id)
+      if (i !== -1) {
+        this.globalData.cart[i].count++
+        return
+      }
+      // 梳理出来的商品信息对象
+      const info = {
+        // 商品Id
+        id: goods.goods_id,
+        // 名称
+        name: goods.goods_name,
+        // 图片
+        pic: goods.goods_small_logo,
+        // 价格
+        price: goods.goods_price,
+        // 数量
+        count: 1,
+        // 是否默认被选中
+        isCheck: true
+      }
+      this.globalData.cart.push(info)
+      // 持久化数据，保存到本地
+      this.saveCartToStorage()
+    }
+
+    // 将购物车中的商品数据，持久化保存到本地
+    saveCartToStorage () {
+      wepy.setStorageSync('cart', this.globalData.cart)
     }
 
     constructor() {
@@ -130,6 +168,7 @@
 
     onLaunch () {
       console.log('小程序启动了')
+      this.globalData.cart = wepy.getStorageSync('cart') || []
     }
   }
 </script>
