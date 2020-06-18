@@ -1,21 +1,19 @@
-'use strict'
-Object.defineProperty(exports, '__esModule', { value: true })
-var component_1 = require('../common/component')
-component_1.VantComponent({
-  props: {
-    info: null,
-    name: String,
-    size: String,
-    color: String,
-    customStyle: String,
-    classPrefix: {
-      type: String,
-      value: 'van-icon'
+import { VantComponent } from '../common/component';
+VantComponent({
+    props: {
+        info: null,
+        name: String,
+        size: String,
+        color: String,
+        customStyle: String,
+        classPrefix: {
+            type: String,
+            value: 'van-icon'
+        }
+    },
+    methods: {
+        onClick() {
+            this.$emit('click');
+        }
     }
-  },
-  methods: {
-    onClick: function () {
-      this.$emit('click')
-    }
-  }
-})
+});

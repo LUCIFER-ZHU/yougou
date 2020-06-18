@@ -77,7 +77,14 @@
         // tag标签
         'van-tag': './assets/vant/tag/index',
         // 卡片组件
-        'van-card': './assets/vant/card/index'
+        'van-card': './assets/vant/card/index',
+        // tab 标签页
+        'van-tab': './assets/vant/tab/index',
+        'van-tabs': './assets/vant/tabs/index',
+        // 商品导航区域
+        'van-goods-action': './assets/vant/goods-action/index',
+        'van-goods-action-icon': './assets/vant/goods-action-icon/index',
+        'van-goods-action-button': './assets/vant/goods-action-button/index'
       }
     }
 
