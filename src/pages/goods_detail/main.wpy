@@ -82,7 +82,8 @@
       <van-goods-action-icon icon="cart-o"
                              text="购物车"
                              url="/pages/tabs/cart"
-                             link-type="switchTab" />
+                             link-type="switchTab"
+                             info="{{total}}" />
       <van-goods-action-button text="加入购物车"
                                type="warning"
                                @click="addToCart" />

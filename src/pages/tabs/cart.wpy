@@ -2,19 +2,72 @@
   <view>
     <view>
       <!-- 空白的购物车 -->
-      <view class="empty_cart">
+      <view class="empty_cart"
+            wx:if="{{isEmpty}}">
         <image src="/assets/images/cart_empty@2x.png" />
         <view>哎呦，购物车是空的噢~</view>
       </view>
       <!-- 非空的购物车 -->
+      <view class="cart-container"
+            wx:else>
+        <!-- 购物车标题 -->
+        <van-cell title="购物车列表"
+                  icon="shop-o" />
+        <!-- 购物车商品列表 wx:key不用加item.,直接用属性名-->
+        <block wx:for="{{cart}}"
+               wx:key="id">
+          <van-swipe-cell right-width="{{ 65 }}"
+                          left-width="{{ 0.1 }}">
+            <van-card title="{{item.name}}">
+              <!-- 自定义商品的描述区域 -->
+              <view slot="desc"
+                    class="desc">
+                <!-- 商品的价格 -->
+                <text class="price">￥{{item.price}}</text>
+                <!-- 商品的数量 -->
+                <van-stepper value="{{item.count}}"
+                             bind:change="countChanged"
+                             data-id="{{item.id}}" />
+              </view>
+              <!-- 自定义渲染缩略图的插槽 -->
+              <view slot="thumb"
+                    class="thumb">
+                <!-- 复选框 -->
+                <van-checkbox value="{{ item.isCheck }}"
+                              checked-color="red"
+                              bind:change="statusChanged"
+                              data-id="{{item.id}}"></van-checkbox>
+                <!-- 缩略图 -->
+                <image src="{{item.pic}}" />
+              </view>
+            </van-card>
+            <view slot="right"
+                  class="close"
+                  @tap="close({{item.id}})">删除</view>
+          </van-swipe-cell>
+        </block>
+        <!-- 提交订单区域 -->
+        <van-submit-bar price="{{ amount }}"
+                        button-text="提交订单"
+                        bind:submit="submitOrder"
+                        tip="{{ false }}">
+          <!-- 全选/反选 的复选框 -->
+          <van-checkbox class="fullCheck"
+                        value="{{isFullChecked}}"
+                        checked-color="#d81e06"
+                        bind:change="onFullCheckChanged">全选</van-checkbox>
+        </van-submit-bar>
+      </view>
     </view>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
-
-  export default class extends wepy.page { }
+  import mix from '@/mixins/tabs/cart.js'
+  export default class extends wepy.page {
+    mixins = [mix]
+  }
 </script>
 
 <style lang="less">
@@ -27,5 +80,60 @@
       width: 180rpx;
       height: 180rpx;
     }
+  }
+  .desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .price {
+      color: red;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
+
+  .van-card {
+    border-bottom: 2rpx solid skyblue;
+    padding-left: 7px !important;
+  }
+
+  .thumb {
+    display: flex;
+    align-items: center;
+    width: 118px;
+    image {
+      width: 90px;
+      height: 90px;
+      margin-left: 8px;
+    }
+  }
+
+  .van-card__thumb {
+    width: 118px !important;
+  }
+
+  .close {
+    background-color: #ff4444;
+    width: 65px;
+    height: 100%;
+    color: white;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background-color: skyblue;
+    }
+  }
+
+  .cart-container {
+    padding-bottom: 50px;
+  }
+
+  .fullCheck {
+    margin-left: 7px;
   }
 </style>

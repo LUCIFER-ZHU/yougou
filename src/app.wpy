@@ -16,7 +16,9 @@
         // 商品细节页面
         'pages/goods_detail/main',
         // 商品列表页面
-        'pages/goods_list'
+        'pages/goods_list',
+        // 确认订单页面
+        'pages/order'
       ],
       window: {
         backgroundTextStyle: 'dark',
@@ -84,7 +86,15 @@
         // 商品导航区域
         'van-goods-action': './assets/vant/goods-action/index',
         'van-goods-action-icon': './assets/vant/goods-action-icon/index',
-        'van-goods-action-button': './assets/vant/goods-action-button/index'
+        'van-goods-action-button': './assets/vant/goods-action-button/index',
+        // Stepper 步进器
+        'van-stepper': './assets/vant/stepper/index',
+        // 复选框
+        'van-checkbox': './assets/vant/checkbox/index',
+        // 滑动单元格组件
+        'van-swipe-cell': './assets/vant/swipe-cell/index',
+        // 提交订单
+        'van-submit-bar': './assets/vant/submit-bar/index'
       }
     }
 
@@ -92,7 +102,9 @@
     // 只需要通过 this.$parent.globalData 就可以拿到这个全局共享的数据对象
     globalData = {
       // 全局的购物车列表
-      cart: []
+      cart: [],
+      // 当前购物车中已经勾选的商品数量
+      total: 0
     }
 
     // 把商品，添加到购物车列表中
@@ -128,6 +140,69 @@
     // 将购物车中的商品数据，持久化保存到本地
     saveCartToStorage () {
       wepy.setStorageSync('cart', this.globalData.cart)
+      this.renderCartBadge()
+    }
+
+    // 更新商品的数量
+    updateGoodsCount (id, count) {
+      const i = this.globalData.cart.findIndex(x => x.id === id)
+      if (i !== -1) {
+        // 根据索引值，获取到对应的那个商品，
+        // 然后更新数量
+        this.globalData.cart[i].count = count
+        // 把更新过后的购物车数据，立即存储到Storage中
+        this.saveCartToStorage()
+      }
+    }
+
+    // 更新商品的选中状态
+    updateGoodsStatus (id, status) {
+      const i = this.globalData.cart.findIndex(x => x.id === id)
+      if (i !== -1) {
+        this.globalData.cart[i].isCheck = status
+        this.saveCartToStorage()
+      }
+    }
+
+    // 根据Id删除对应的商品
+    removeGoodsById (id) {
+      const i = this.globalData.cart.findIndex(x => x.id === id)
+      if (i !== -1) {
+        this.globalData.cart.splice(i, 1)
+        this.saveCartToStorage()
+      }
+    }
+
+    // 更新购物车中每件商品的选中状态
+    updateAllGoodsStatus (status) {
+      this.globalData.cart.forEach(x => {
+        x.isCheck = status
+      })
+      this.saveCartToStorage()
+    }
+
+    // 渲染购物车的徽章
+    async renderCartBadge () {
+      // 计算已勾选的商品数量
+      let c = 0
+      this.globalData.cart.forEach(x => {
+        if (x.isCheck) {
+          c += x.count
+        }
+      })
+      // 更新全局的商品数量
+      this.globalData.total = c
+      // 调用 API，将已勾选的商品数量渲染到指定的 TabBar 中
+      const res = await wepy
+        .setTabBarBadge({
+          index: 3,
+          text: c + ''
+        })
+        .catch(err => err)
+
+      // 设置 tabBar 的徽章失败！
+      if (res.errMsg !== 'setTabBarBadge:ok') {
+      }
     }
 
     constructor() {
@@ -169,6 +244,7 @@
     onLaunch () {
       console.log('小程序启动了')
       this.globalData.cart = wepy.getStorageSync('cart') || []
+      this.renderCartBadge()
     }
   }
 </script>

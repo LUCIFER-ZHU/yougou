@@ -68,6 +68,9 @@ export default class extends wepy.mixin {
       const str =
         addr.provinceName + addr.cityName + addr.countyName + addr.detailInfo
       return str
+    },
+    total() {
+      return this.$parent.globalData.total
     }
   }
 
