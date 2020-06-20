@@ -1,5 +1,48 @@
 <template>
-  <view>order页面</view>
+  <view>
+    <!-- 选择收货地址按钮区域 -->
+    <view class="choose_address_box"
+          wx:if="{{isHaveAddress === false}}">
+      <van-button type="info"
+                  size="small"
+                  @tap="chooseAddress">+ 选择收货地址</van-button>
+    </view>
+
+    <!-- 收货人信息区域 -->
+    <view class="address_box"
+          wx:else>
+      <!-- 收货人，联系电话 -->
+      <view class="box1">
+        <text>收货人：{{addressInfo.userName}}</text>
+        <view @tap="chooseAddress">
+          <text>联系电话：{{addressInfo.telNumber}}</text>
+          <van-icon name="arrow" />
+        </view>
+      </view>
+      <!-- 收货地址 -->
+      <view class="box2">收货地址：{{addressStr}}</view>
+    </view>
+
+    <!-- 分割线 -->
+    <image src="/assets/images/cart_border@2x.png"
+           class="sep_line"></image>
+
+    <!-- 商品列表 -->
+    <view class="goods_list">
+      <block wx:for="{{cart}}"
+             wx:key="id">
+        <van-card num="{{item.count}}"
+                  price="{{item.price}}"
+                  title="{{item.name}}"
+                  thumb="{{item.pic}}" />
+      </block>
+    </view>
+
+    <!-- 登录后下单 -->
+    <van-button type="primary"
+                size="large"
+                class="btnLogin">登录后下单</van-button>
+  </view>
 </template>
 
 <script>
@@ -7,7 +50,49 @@
   import mix from '@/mixins/order.js'
   export default class extends wepy.page {
     mixins = [mix]
+    config = {
+      // 设置当前页面的标题
+      navigationBarTitleText: '确认订单'
+    }
   }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+  .choose_address_box {
+    text-align: center;
+    padding: 60rpx 0;
+  }
+
+  .sep_line {
+    height: 7px;
+    width: 100%;
+    display: block;
+  }
+
+  .address_box {
+    font-size: 26rpx;
+    padding: 0 10rpx;
+    .box1 {
+      display: flex;
+      justify-content: space-between;
+      padding: 30rpx 0;
+    }
+    .box2 {
+      padding-bottom: 30rpx;
+    }
+  }
+
+  .van-card {
+    border-bottom: 1rpx dashed black;
+  }
+
+  .btnLogin {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .order_container {
+    padding-bottom: 50px;
+  }
+</style>

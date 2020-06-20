@@ -94,7 +94,9 @@
         // 滑动单元格组件
         'van-swipe-cell': './assets/vant/swipe-cell/index',
         // 提交订单
-        'van-submit-bar': './assets/vant/submit-bar/index'
+        'van-submit-bar': './assets/vant/submit-bar/index',
+        // 按钮
+        'van-button': './assets/vant//button/index'
       }
     }
 
