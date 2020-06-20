@@ -18,7 +18,9 @@
         // 商品列表页面
         'pages/goods_list',
         // 确认订单页面
-        'pages/order'
+        'pages/order',
+        // 订单列表页面
+        'pages/orderlist'
       ],
       window: {
         backgroundTextStyle: 'dark',
@@ -219,6 +221,12 @@
           wepy.showLoading({
             title: '数据加载中...'
           })
+
+          // 自定义请求头
+          p.header = {
+            Authorization: wepy.getStorageSync('token')
+          }
+
           // 必须返回OBJECT参数对象，否则无法发送请求到服务端
           return p
         },

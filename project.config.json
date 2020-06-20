@@ -97,6 +97,13 @@
 					"id": -1,
 					"name": "订单页面",
 					"pathName": "pages/order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单列表页面",
+					"pathName": "pages/orderlist",
 					"scene": null
 				}
 			]

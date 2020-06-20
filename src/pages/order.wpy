@@ -41,7 +41,17 @@
     <!-- 登录后下单 -->
     <van-button type="primary"
                 size="large"
-                class="btnLogin">登录后下单</van-button>
+                class="btnLogin"
+                open-type="getUserInfo"
+                bindgetuserinfo="getUserInfo"
+                wx:if="{{islogin === false}}">
+      登录后下单</van-button>
+
+    <!-- 订单支付区域 -->
+    <van-submit-bar price="{{amount}}"
+                    button-text="支付订单"
+                    bind:submit="onSubmit"
+                    wx:else></van-submit-bar>
   </view>
 </template>
 
