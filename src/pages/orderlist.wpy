@@ -1,13 +1,27 @@
 <template>
-  <div>
-    orderlist
-  </div>
+  <view>
+    <!-- 标签页 -->
+    <van-tabs active="{{ active }}"
+              bind:change="tabChanged">
+      <van-tab title="全部"></van-tab>
+      <van-tab title="待付款">待付款</van-tab>
+      <van-tab title="已付款">已付款</van-tab>
+    </van-tabs>
+  </view>
 </template>
 
 <script>
   import wepy from 'wepy'
   import mix from '@/mixins/orderlist.js'
+
   export default class extends wepy.page {
     mixins = [mix]
+
+    config = {
+      navigationBarTitleText: '订单列表'
+    }
   }
 </script>
+
+<style lang="less">
+</style>

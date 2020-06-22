@@ -98,7 +98,9 @@
         // 提交订单
         'van-submit-bar': './assets/vant/submit-bar/index',
         // 按钮
-        'van-button': './assets/vant//button/index'
+        'van-button': './assets/vant//button/index',
+        // Panel 面板
+        'van-panel': './assets/vant/panel/index'
       }
     }
 
