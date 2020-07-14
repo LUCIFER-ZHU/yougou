@@ -43,7 +43,7 @@
                 size="large"
                 class="btnLogin"
                 open-type="getUserInfo"
-                bindgetuserinfo="getUserInfo"
+                bind:getuserinfo="getUserInfo"
                 wx:if="{{islogin === false}}">
       登录后下单</van-button>
 

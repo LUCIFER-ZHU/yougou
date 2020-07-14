@@ -2,7 +2,7 @@
 	"description": "A WePY project",
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
+		"es6": false,
 		"enhance": true,
 		"postcss": false,
 		"preloadBackgroundData": false,

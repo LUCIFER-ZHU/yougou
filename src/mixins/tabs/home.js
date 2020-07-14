@@ -27,6 +27,7 @@ export default class extends wepy.mixin {
       })
     }
   }
+
   // 获取轮播图数据
   async getSwiperData() {
     // 解构赋值
