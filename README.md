@@ -12,8 +12,8 @@
 
 ### 2.1 初始化项目
 
-1. 运行 `wepy init standard heima_ugo` 命令，初始化小程序项目
-2. 运行 `cd heima_ugo` 进入项目根目录
+1. 运行 `wepy init standard 项目名` 命令，初始化小程序项目
+2. 运行 `cd 项目名` 进入项目根目录
 3. 运行 `npm install` 安装所有依赖项
 4. 运行 `wepy build --watch` 命令，开启 wepy 项目的实时编译功能
 5. 打开微信开发者工具，加载 wepy 项目并查看效果
